@@ -1,3 +1,8 @@
+Analyzing Proximate Listings to Predict Key Figures for Rental Properties
+Prepared by Cole Beasley, Yavuz Kaklikkaya, Julia Kempton
+For Introduction to Machine Learning, Paris, Spring 2022
+--------------------------------------------------------
+
 #Selenium is the file used to get API requests from AIRBNB including variable information such as occupancy and nightly rates, written in Python.
 #As of 4/20/22 it only prints this information to the output, but it will save it to a JSON file. 
 #It is a variant on the initial file for the API requests ('scrappy) but able to scan interactive parts of the javascript (e.g. nightly rates and calendar availability)
