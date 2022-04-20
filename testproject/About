@@ -1,0 +1,3 @@
+At current scrappy performs API requests crawling through Airbnb pages, taking listing characteristics. 
+However, it is not able to take dynamic information about each property. For that (e.g. the occupancy and prices) we need to use Selenium.
+(4/20/22)
