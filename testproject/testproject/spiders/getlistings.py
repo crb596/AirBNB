@@ -132,72 +132,72 @@ class ToScrapeCSSSpider(scrapy.Spider):
         # yield{"data": response}
         print(response.text)
 
-        # for scripts in response.css('script#data-deferred-state::text'):
-        #     data = chompjs.parse_js_object(scripts.get())
-        #     sections = data['niobeMinimalClientData'][0][1]['data']['presentation']['stayProductDetailPage']['sections']['sections']
-        #     metadata = data['niobeMinimalClientData'][0][1]['data']['presentation']['stayProductDetailPage']['sections']['metadata']
+        for scripts in response.css('script#data-deferred-state::text'):
+            data = chompjs.parse_js_object(scripts.get())
+            sections = data['niobeMinimalClientData'][0][1]['data']['presentation']['stayProductDetailPage']['sections']['sections']
+            metadata = data['niobeMinimalClientData'][0][1]['data']['presentation']['stayProductDetailPage']['sections']['metadata']
             
             
-        #     # Variables to return
-        #     guests = ''
-        #     rooms = ''
-        #     baths = ''
-        #     beds = ''
-        #     title = ''
-        #     url = str(response).lstrip("<123456 7890").rstrip(">")
-        #     listing_id = re.findall(r'\d+', url)[0]
-        #     average_review = ''
-        #     total_reviews = ''
-        #     lat = metadata['loggingContext']['eventDataLogging']['listingLat']
-        #     lng = metadata['loggingContext']['eventDataLogging']['listingLng']
-        #     superhost = metadata['loggingContext']['eventDataLogging']['isSuperhost']
-        #     listing_id = metadata['loggingContext']['eventDataLogging']['listingId']
-        #     roomType = metadata['loggingContext']['eventDataLogging']['roomType']
-        #     pictureCount = metadata['loggingContext']['eventDataLogging']['pictureCount']
-        #     amenities = metadata['loggingContext']['eventDataLogging']['amenities']
-        #     accuracyRating = metadata['loggingContext']['eventDataLogging']['accuracyRating']
-        #     checkinRating = metadata['loggingContext']['eventDataLogging']['checkinRating']
-        #     cleanlinessRating = metadata['loggingContext']['eventDataLogging']['cleanlinessRating']
-        #     communicationRating = metadata['loggingContext']['eventDataLogging']['communicationRating']
-        #     locationRating = metadata['loggingContext']['eventDataLogging']['locationRating']
-        #     valueRating = metadata['loggingContext']['eventDataLogging']['valueRating']
-        #     guestSatisfactionOverall = metadata['loggingContext']['eventDataLogging']['guestSatisfactionOverall']
-        #     reviewCount = metadata['loggingContext']['eventDataLogging']['visibleReviewCount']
+            # Variables to return
+            guests = ''
+            rooms = ''
+            baths = ''
+            beds = ''
+            title = ''
+            url = str(response).lstrip("<123456 7890").rstrip(">")
+            listing_id = re.findall(r'\d+', url)[0]
+            average_review = ''
+            total_reviews = ''
+            lat = metadata['loggingContext']['eventDataLogging']['listingLat']
+            lng = metadata['loggingContext']['eventDataLogging']['listingLng']
+            superhost = metadata['loggingContext']['eventDataLogging']['isSuperhost']
+            listing_id = metadata['loggingContext']['eventDataLogging']['listingId']
+            roomType = metadata['loggingContext']['eventDataLogging']['roomType']
+            pictureCount = metadata['loggingContext']['eventDataLogging']['pictureCount']
+            amenities = metadata['loggingContext']['eventDataLogging']['amenities']
+            accuracyRating = metadata['loggingContext']['eventDataLogging']['accuracyRating']
+            checkinRating = metadata['loggingContext']['eventDataLogging']['checkinRating']
+            cleanlinessRating = metadata['loggingContext']['eventDataLogging']['cleanlinessRating']
+            communicationRating = metadata['loggingContext']['eventDataLogging']['communicationRating']
+            locationRating = metadata['loggingContext']['eventDataLogging']['locationRating']
+            valueRating = metadata['loggingContext']['eventDataLogging']['valueRating']
+            guestSatisfactionOverall = metadata['loggingContext']['eventDataLogging']['guestSatisfactionOverall']
+            reviewCount = metadata['loggingContext']['eventDataLogging']['visibleReviewCount']
 
 
-        #     for SectionContainers in sections:
-        #         if("OVERVIEW_DEFAULT" in SectionContainers['sectionId']):
-        #             if "section" in SectionContainers and "detailItems" in SectionContainers["section"]:
-        #                 for info in SectionContainers['section']["detailItems"]:
-        #                     if "guest" in info['title']:
-        #                         guests = re.findall("\d+\.\d+|\d+", info['title'])[0]
-        #                     if "room" in info['title']:
-        #                         rooms = re.findall("\d+\.\d+|\d+", info['title'])[0]
-        #                     if "bath" in info['title']:
-        #                         baths = re.findall("\d+\.\d+|\d+", info['title'])[0]
-        #                     if "bed" in info['title']:
-        #                         beds = re.findall("\d+\.\d+|\d+", info['title'])[0]
+            for SectionContainers in sections:
+                if("OVERVIEW_DEFAULT" in SectionContainers['sectionId']):
+                    if "section" in SectionContainers and "detailItems" in SectionContainers["section"]:
+                        for info in SectionContainers['section']["detailItems"]:
+                            if "guest" in info['title']:
+                                guests = re.findall("\d+\.\d+|\d+", info['title'])[0]
+                            if "room" in info['title']:
+                                rooms = re.findall("\d+\.\d+|\d+", info['title'])[0]
+                            if "bath" in info['title']:
+                                baths = re.findall("\d+\.\d+|\d+", info['title'])[0]
+                            if "bed" in info['title']:
+                                beds = re.findall("\d+\.\d+|\d+", info['title'])[0]
             
 
-            # yield{
-            #     'listingId': listing_id,
-            #     'guests': guests,
-            #     'rooms': rooms,
-            #     'baths': baths,
-            #     'beds': beds,
-            #     'lat': lat,
-            #     'lng': lng,
-            #     'superhost': superhost,
-            #     'roomType': roomType,
-            #     'pictureCount': pictureCount,
-            #     'accuracyRating': accuracyRating,
-            #     'checkinRating': checkinRating,
-            #     'cleanlinessRating': cleanlinessRating,
-            #     'communicationRating': communicationRating,
-            #     'locationRating': locationRating,
-            #     'valueRating': valueRating,
-            #     'guestSatisfactionOverall': guestSatisfactionOverall,
-            #     'reviewCount': reviewCount,
-            # }
+            yield{
+                'listingId': listing_id,
+                'guests': guests,
+                'rooms': rooms,
+                'baths': baths,
+                'beds': beds,
+                'lat': lat,
+                'lng': lng,
+                'superhost': superhost,
+                'roomType': roomType,
+                'pictureCount': pictureCount,
+                'accuracyRating': accuracyRating,
+                'checkinRating': checkinRating,
+                'cleanlinessRating': cleanlinessRating,
+                'communicationRating': communicationRating,
+                'locationRating': locationRating,
+                'valueRating': valueRating,
+                'guestSatisfactionOverall': guestSatisfactionOverall,
+                'reviewCount': reviewCount,
+            }
             # print(sections)
         # print(response)
